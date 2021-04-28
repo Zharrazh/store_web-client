@@ -1,0 +1,28 @@
+.headerNavLink{
+  color: white;
+
+  .text {
+    font-weight: lighter;
+    font-size: 14px;
+    text-transform: uppercase;
+
+  }
+
+  &.active{
+    color: #FAFF00 !important;
+    border-bottom: 2px #FAFF00;
+    position: relative;
+    display: inline-block;
+    &::after{
+      display: block;
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 100%;
+      background-color: #FAFF00;
+      transition: width .5s ease-in-out;
+      left: 0;
+      bottom: -10px;
+    }
+  }
+}

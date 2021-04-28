@@ -1,0 +1,19 @@
+.dashboardApp {
+  min-height: 100vh;
+
+  .underHeader {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-areas: "sd main";
+    grid-gap: 24px;
+    padding: 24px;
+  }
+
+
+  .sidebarWrapper{
+    grid-area: sd;
+  }
+  .contentWrapper{
+    grid-area: main;
+  }
+}

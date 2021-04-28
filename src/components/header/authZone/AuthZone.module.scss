@@ -1,0 +1,28 @@
+.authZone {
+  .nickName{
+    color: white;
+    font-size: 14px;
+  }
+
+  .logAction {
+    text-transform: uppercase;
+    color: white;
+    font-weight: lighter;
+    font-size: 14px;
+    text-decoration: none;
+    position: relative;
+
+    &::after{
+      display: block;
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 100%;
+      background-color: white;
+      opacity: 0.5;
+      transition: width .5s ease-in-out;
+      left: 0;
+      bottom: -10px;
+    }
+  }
+}

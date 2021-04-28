@@ -1,0 +1,26 @@
+.hidden {
+  display: none !important;
+}
+.editableTextBoxWrapper{
+  .editableTextBox{
+    display: flex;
+    align-items: baseline;
+    margin-top: 3px;
+
+    .text{
+      margin-top: 8px;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      overflow-y: auto;
+      max-height: 200px;
+      margin-right: 16px;
+    }
+
+  }
+
+  .textArea {
+    font-size: 0.8rem;
+    resize: none;
+    width: 100%;
+  }
+}

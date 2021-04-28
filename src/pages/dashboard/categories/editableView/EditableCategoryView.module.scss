@@ -1,0 +1,31 @@
+.editableCategoryView {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 24px;
+  grid-template-areas:  "header      pic"
+                        "form        pic"
+                        "buttonsArea   buttonsArea"
+;
+  .header {
+    grid-area: header;
+  }
+
+  .form {
+    grid-area: form;
+  }
+  .buttonsArea{
+    grid-area: buttonsArea;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px;
+  }
+  .picArea{
+    max-height: 300px;
+    grid-area:pic ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+

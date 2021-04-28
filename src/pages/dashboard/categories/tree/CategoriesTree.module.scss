@@ -1,0 +1,24 @@
+.categoriesTree{
+  max-width: 700px;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  border-radius: 4px;
+
+  .createBtn{
+    padding: 6px 4px;
+    color: #09aa34;
+    min-width:min-content;
+  }
+
+  .treeView{
+    .createRoot{
+      margin: 8px 0;
+    }
+    border-top: solid 1px black;
+    margin-top: 8px;
+    flex-grow: 1;
+  }
+}

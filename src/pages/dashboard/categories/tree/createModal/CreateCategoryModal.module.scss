@@ -1,0 +1,28 @@
+.form {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-rows: 1fr min-content;
+  grid-template-columns: 2fr 200px;
+  grid-template-areas:  "mainForm picArea"
+                        "submitBtn cancelBtn";
+  .mainForm{
+    grid-area:mainForm ;
+    display: flex;
+    flex-direction: column;
+    gap : 16px;
+
+    .textArea {
+      flex-grow: 1;
+    }
+  }
+  .picArea{
+    grid-area:picArea;
+  }
+  .submitBtn{
+    grid-area: submitBtn;
+  }
+  .cancelBtn {
+    grid-area: cancelBtn;
+  }
+
+}

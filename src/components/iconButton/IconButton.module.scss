@@ -1,0 +1,27 @@
+.iconButton{
+  opacity: 50%;
+  padding: 1px;
+  border-radius: 3px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    opacity: 70%;
+    background: rgba(0, 0, 0, 0.1);
+
+    &.blue{
+      color: #0066ff;
+    }
+    &.green{
+      color: #09aa34;
+    }
+    &.red{
+      color: #d21010;
+    }
+  }
+
+
+
+
+}

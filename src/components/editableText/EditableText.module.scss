@@ -1,0 +1,19 @@
+.hidden {
+  display: none !important;
+}
+.editableTextWrapper{
+  width: fit-content;
+  .editableText{
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+
+    .text{
+      margin-right: 16px;
+    }
+  }
+
+  .errorMessage {
+    display: block;
+  }
+}

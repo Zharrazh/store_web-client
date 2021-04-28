@@ -1,0 +1,16 @@
+.header {
+  padding: 12px 0;
+  color: white;
+  border-bottom: 3px red solid;
+  background: black;
+  .inner {
+    height: 60px;
+    .content {
+      height: 100%;
+    }
+  }
+  &.outline {
+    border: none;
+    background: none;
+  }
+}

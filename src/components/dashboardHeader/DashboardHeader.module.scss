@@ -1,0 +1,13 @@
+.dashboardHeader {
+  padding: 12px 0;
+  color: white;
+
+  background: rgb(25,35,0);
+  background: linear-gradient(90deg, rgba(25,35,0,1) 6%, rgba(14,19,0,1) 66%, rgba(25,35,0,1) 100%);
+  .inner {
+    height: 60px;
+    .content {
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.dashboardSidebarNavLink{
+
+  .navLink{
+    border-left: transparent solid 2px ;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+  }
+
+  .active{
+    border-left: orange solid 2px;
+  }
+}

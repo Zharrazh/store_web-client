@@ -1,0 +1,14 @@
+@keyframes fullRotation {
+  0% {
+    transform: rotate(0deg);
+
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.loadingIcon {
+  animation: fullRotation infinite 2s linear;
+
+}
