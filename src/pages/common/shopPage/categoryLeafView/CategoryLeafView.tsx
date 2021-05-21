@@ -70,7 +70,7 @@ export const CategoryLeafView: React.FC<{
       });
     }
     return newFilter;
-  }, [name, minPrice, maxPrice]);
+  }, [name, minPrice, maxPrice, category.id]);
 
   //region Handlers
   const handleNameChange = useCallback(({ target: { value } }) => {

@@ -36,7 +36,7 @@ export const ProductPage: React.FC = () => {
         setProduct(res.data);
       }
     });
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (product?.categoryId) {
