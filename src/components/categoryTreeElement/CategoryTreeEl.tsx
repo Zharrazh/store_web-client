@@ -60,7 +60,6 @@ export const CategoryTreeEl: React.FC<Props> = ({
                 color={"green"}
                 onClick={(event) => {
                   event.stopPropagation();
-
                   onCreateChild(category, false);
                 }}
               >

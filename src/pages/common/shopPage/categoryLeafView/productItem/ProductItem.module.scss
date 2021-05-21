@@ -1,0 +1,49 @@
+.productItem {
+  background-color: rgba(0, 0, 0, 0.01);
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  border-radius: 5px;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-rows: auto 120px auto;
+  grid-template-columns: 240px 1fr;
+  grid-template-areas:
+          "pic header"
+          "pic desc"
+          "pic price";
+  .header{
+    grid-area: header;
+  }
+  .desc {
+    grid-area: desc;
+  }
+  .price {
+    grid-area: price;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .picWrapper{
+    grid-area: pic;
+    position: relative;
+    height: 100%;
+    .pic{
+      border-radius: 5px;
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.04);
+
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.08);
+    .header{
+      text-decoration: underline;
+    }
+  }
+
+}

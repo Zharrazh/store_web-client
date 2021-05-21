@@ -3,10 +3,11 @@ import * as lscache from "lscache";
 import { AuthActions } from "../auth/actions";
 import { AuthAsyncActions } from "../auth/thunks";
 import { InitActions } from "./actions";
-import { AppThunk, RootState } from "../store";
+import { AppThunk, AppStore } from "../store";
 import { AnyAction } from "redux";
+import { CategoriesThunks } from "../categories/thunks";
 
-type AppDispatch = ThunkDispatch<RootState, any, AnyAction>;
+type AppDispatch = ThunkDispatch<AppStore, any, AnyAction>;
 
 export const initAsync = (): AppThunk<Promise<any>> => {
   return async (dispatch: AppDispatch) => {
@@ -16,6 +17,7 @@ export const initAsync = (): AppThunk<Promise<any>> => {
       dispatch(AuthActions.setToken(token));
       await dispatch(AuthAsyncActions.getMeAsync());
     }
+    await dispatch(CategoriesThunks.getCategoriesTreeAsync());
     dispatch(InitActions.setInit());
   };
 };

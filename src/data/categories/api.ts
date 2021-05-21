@@ -1,6 +1,7 @@
 import { http } from "../../utils/http";
 import {
   CategoryFull,
+  CategoryMin,
   CategoryTree,
   CreateUpdateCategoryRequest,
 } from "./models";
@@ -36,6 +37,14 @@ const deleteCategory = (id: number) => {
   return http.delete(`Categories/${id}`);
 };
 
+const getLeafs = () => {
+  return http.get<CategoryFull[]>("Categories", { type: 1 });
+};
+
+const getPath = (id: number) => {
+  return http.get<CategoryMin[]>(`Categories/path/${id}`);
+};
+
 export const CategoriesAPI = {
   getCategoriesTree,
   getCategoryFull,
@@ -43,4 +52,6 @@ export const CategoriesAPI = {
   updateCategory,
   updateCategoryPic,
   deleteCategory,
+  getLeafs,
+  getPath,
 };

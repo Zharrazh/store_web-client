@@ -1,0 +1,64 @@
+.categoryCard {
+  padding: 16px;
+  border: #b1b1b1 solid 1px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 260px;
+
+
+  display: grid;
+  grid-template-rows: min-content 180px;
+  grid-template-columns: 100%;
+  grid-template-areas:
+          "head"
+          "pic";
+
+  position: relative;
+
+  .header {
+    text-transform: uppercase;
+    grid-area: head;
+    text-align: center;
+  }
+  .pic{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    grid-area: pic;
+  }
+  .description{
+    display: none;
+    text-align: center;
+    z-index: 2;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+  }
+
+  &:after{
+    content: '';
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover {
+    color: white;
+    .header{
+      z-index: 2;
+    }
+    .description{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &:after{
+      display: block;
+      background-color: rgba(0, 0, 0, 0.67);
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "../../components/image/Image";
+import { Image } from "../image/Image";
 import noImg from "../../assets/imgs/no-img.jpg";
 import { Controller, DeepMap, FieldError } from "react-hook-form";
 import { Button } from "@material-ui/core";
@@ -29,7 +29,7 @@ export const EditableImage: React.FC<Props> = ({
     <Controller
       name={name}
       control={control}
-      render={({ value, onChange }) => {
+      render={({ field: { value, onChange } }) => {
         return (
           <div className={cn(className, classes.editableImage)}>
             {value ? (

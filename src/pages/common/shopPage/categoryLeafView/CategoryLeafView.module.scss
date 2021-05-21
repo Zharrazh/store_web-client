@@ -1,0 +1,42 @@
+.categoryLeafView{
+  margin-top: 24px;
+  display: flex;
+
+
+  .mainCard {
+    flex-grow: 1;
+    margin-right: 24px;
+
+    .listOfProducts{
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+
+      & > * + * {
+        margin-top: 16px;
+      }
+    }
+  }
+  .filters {
+    padding: 0;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+
+    .filters_title{
+      text-align: center;
+      font-weight: 500;
+      padding: 16px;
+      border-bottom: rgba(224, 224, 224, 1) solid 1px;
+    }
+    .filters_inputs{
+      padding: 16px;
+      display: flex ;
+      flex-direction: column;
+
+      & > * + * {
+        margin-top: 24px;
+      }
+    }
+  }
+}

@@ -1,3 +1,40 @@
 .headSection {
   background: top/100% url("../../../../assets/imgs/header-section-image.png") no-repeat black;
+  min-height: 100vh;
+
+  .container {
+    margin-top: 90px;
+    color: white;
+
+    .mainText{
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 115%;
+      letter-spacing: 0.05rem;
+
+      .exotic{
+        color: #FAFF00;
+        text-shadow: 1px 1px 0 #14FF00;
+      }
+    }
+    .subText {
+      margin-top: 20px;
+      font-weight: 600;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    .btns{
+      margin-top: 65px;
+      display: flex;
+      align-items: center;
+
+      .or{
+        padding: 25px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 13px;
+      }
+    }
+  }
 }

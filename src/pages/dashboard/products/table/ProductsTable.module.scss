@@ -1,0 +1,48 @@
+.products {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: min-content 1fr;
+  grid-template-areas:
+          "head ."
+          "table filters";
+  grid-gap: 24px;
+
+  .header{
+    grid-area: head;
+
+    & > * + * {
+      margin-top: 18px;
+    }
+  }
+
+  .table{
+    grid-area: table;
+  }
+  .filters{
+    border: rgba(224, 224, 224, 1) solid 1px ;
+    border-radius: 4px;
+    grid-area: filters;
+    display: flex;
+    flex-direction: column;
+
+    .filters_title{
+      text-align: center;
+      font-weight: 500;
+      padding: 16px;
+      border-bottom: rgba(224, 224, 224, 1) solid 1px;
+    }
+    .filters_inputs{
+      padding: 16px;
+      display: flex ;
+      flex-direction: column;
+
+      & > * + * {
+        margin-top: 24px;
+      }
+    }
+
+
+  }
+
+}

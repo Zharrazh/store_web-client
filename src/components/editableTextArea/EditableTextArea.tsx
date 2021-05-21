@@ -36,7 +36,7 @@ export const EditableTextArea: React.FC<Props> = ({
     <Controller
       name={name}
       control={control}
-      render={({ value, onChange }) => {
+      render={({ field: { value, onChange } }) => {
         return (
           <ClickAwayListener
             onClickAway={handleClickOutside}

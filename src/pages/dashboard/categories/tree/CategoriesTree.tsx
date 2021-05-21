@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../data/store";
-import { CategoriesAsyncActions } from "../../../../data/categories/thunks";
+import { AppStore } from "../../../../data/store";
+import { CategoriesThunks } from "../../../../data/categories/thunks";
 import { CategoryTreeEl } from "../../../../components/categoryTreeElement/CategoryTreeEl";
 import classes from "./CategoriesTree.module.scss";
 import { LoadingIcon } from "../../../../components/loadingIcon/LoadingIcon";
@@ -38,12 +38,14 @@ export const CategoriesTree: React.FC = () => {
 
   const dispatch = useDispatch();
   const categoriesIsFetching = useSelector(
-    (state: RootState) => state.categories.isFetching
+    (state: AppStore) => state.categories.treeZone.isFetching
   );
-  const categoryTree = useSelector((state: RootState) => state.categories.tree);
+  const categoryTree = useSelector(
+    (state: AppStore) => state.categories.treeZone.tree
+  );
 
   const updateCategoryTree = useCallback(() => {
-    dispatch(CategoriesAsyncActions.getCategoriesTreeAsync());
+    dispatch(CategoriesThunks.getCategoriesTreeAsync());
   }, [dispatch]);
 
   useEffect(() => {
@@ -51,14 +53,14 @@ export const CategoriesTree: React.FC = () => {
   }, [updateCategoryTree]);
 
   const updateHandle = useCallback(() => {
-    dispatch(CategoriesAsyncActions.getCategoriesTreeAsync());
+    dispatch(CategoriesThunks.getCategoriesTreeAsync());
     updateCategoryTree();
   }, [dispatch, updateCategoryTree]);
 
   const deleteCategoryHandle = useCallback(async () => {
     if (deleteModalState.category)
       await dispatch(
-        CategoriesAsyncActions.deleteCategoryAsync(deleteModalState.category.id)
+        CategoriesThunks.deleteCategoryAsync(deleteModalState.category.id)
       );
     setDeleteModalState({ open: false });
     updateCategoryTree();

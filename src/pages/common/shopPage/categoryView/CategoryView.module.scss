@@ -1,0 +1,12 @@
+.categoryView{
+  padding: 24px;
+
+  .listOfCategories {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 24px
+  }
+}

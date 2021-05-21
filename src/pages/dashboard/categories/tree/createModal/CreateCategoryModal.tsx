@@ -10,7 +10,7 @@ import classes from "./CreateCategoryModal.module.scss";
 import { DialogTitle } from "../../../../../components/dialogTitle/DialogTitle";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../../data/store";
-import { CategoriesAsyncActions } from "../../../../../data/categories/thunks";
+import { CategoriesThunks } from "../../../../../data/categories/thunks";
 import {
   combineServerErrors,
   handleServerErrors,
@@ -53,7 +53,6 @@ export const CreateCategoryModal: React.FC<Props> = ({
     register,
     handleSubmit,
     control,
-    errors,
     setError,
     formState,
   } = useForm<Input>({
@@ -69,7 +68,7 @@ export const CreateCategoryModal: React.FC<Props> = ({
   const onSubmit: SubmitHandler<Input> = async (data) => {
     if (parent !== undefined && isNode !== undefined) {
       const createRes = await dispatch(
-        CategoriesAsyncActions.createCategoryAsync({
+        CategoriesThunks.createCategoryAsync({
           isNode,
           parentId: parent ? parent.id : null,
           name: data.name,
@@ -83,10 +82,7 @@ export const CreateCategoryModal: React.FC<Props> = ({
       }
       if (data.pic) {
         const uploadPicRes = await dispatch(
-          CategoriesAsyncActions.updateCategoryPicAsync(
-            createRes.data.id,
-            data.pic
-          )
+          CategoriesThunks.updateCategoryPicAsync(createRes.data.id, data.pic)
         );
 
         if (uploadPicRes.isError) {
@@ -102,7 +98,7 @@ export const CreateCategoryModal: React.FC<Props> = ({
     }
   };
 
-  const { isSubmitting, isDirty, isValid } = formState;
+  const { isSubmitting, isDirty, isValid, errors } = formState;
   return (
     <Dialog open={open} onClose={onClose} maxWidth={"sm"} fullWidth>
       <DialogTitle onClose={onClose}>
@@ -116,7 +112,7 @@ export const CreateCategoryModal: React.FC<Props> = ({
           <div className={classes.mainForm}>
             <TextField
               label={"Name"}
-              inputRef={register}
+              inputProps={register("name")}
               name={"name"}
               error={!!errors.name}
               helperText={errors.name?.message}
@@ -132,7 +128,7 @@ export const CreateCategoryModal: React.FC<Props> = ({
               variant={"outlined"}
               label={"Description"}
               name={"description"}
-              inputRef={register}
+              inputProps={register("description")}
               required
               error={!!errors.description}
               helperText={errors.description?.message}

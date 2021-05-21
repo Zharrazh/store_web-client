@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { initAsync } from "./data/init/thunks";
 import { CommonApp } from "./pages/common/CommonApp";
 import { DashboardApp } from "./pages/dashboard/DashboardApp";
-import { RootState } from "./data/store";
+import { AppStore } from "./data/store";
 
 const theme = createMuiTheme({
   typography: {
@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 
 function App() {
   const dispatch = useDispatch();
-  const isInit = useSelector<RootState, boolean>((state) => state.init.isInit);
+  const isInit = useSelector<AppStore, boolean>((state) => state.init.isInit);
   useEffect(() => {
     dispatch(initAsync());
   }, [dispatch]);

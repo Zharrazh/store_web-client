@@ -1,5 +1,6 @@
 import { ErrorOption } from "react-hook-form";
 import { ResponseType } from "../data/store";
+import { AjaxError } from "rxjs/ajax";
 
 export function mapServerError<T>(errors: { [P in keyof T]?: string[] }) {
   let mappedErrors: { [P in keyof T]?: string } = {};
@@ -36,7 +37,7 @@ export function combineServerErrors<T>(
 
 export function handleServerErrors<T>(
   serverErrors: BadRequestError<T>,
-  setError: (name: string, error: ErrorOption) => void
+  setError: (name: any, error: ErrorOption) => void
 ) {
   Object.entries(serverErrors).forEach(([key, messageArr]) => {
     if (messageArr)
@@ -45,3 +46,12 @@ export function handleServerErrors<T>(
       });
   });
 }
+
+export const thunkHandleError = (e: any) => {
+  const error = e as AjaxError;
+  return {
+    isError: true,
+    code: error.status,
+    data: error.response,
+  };
+};

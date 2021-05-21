@@ -29,7 +29,7 @@ export type CategoryFull = {
   isNode: boolean;
   name: string;
   description: string;
-  parentId: number;
+  parentId: number | null;
   pic?: PictureInfo;
   childCategories?: CategoryMin[];
 };

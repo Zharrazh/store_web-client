@@ -1,33 +1,28 @@
 import { AppThunk } from "../store";
 import { CategoriesActions } from "./actions";
 import { CategoriesAPI } from "./api";
-import { AjaxError } from "rxjs/ajax";
 import { CreateUpdateCategoryRequest } from "./models";
+import { thunkHandleError } from "../../utils/handleServerResult";
 
 const getCategoriesTreeAsync = (): AppThunk => {
   return async (dispatch) => {
     try {
-      dispatch(CategoriesActions.setIsFetching(true));
+      dispatch(CategoriesActions.setTreeIsFetching(true));
       const tree = await CategoriesAPI.getCategoriesTree().toPromise();
-      dispatch(CategoriesActions.setCategoryTree(tree));
-      dispatch(CategoriesActions.setIsFetching(false));
+      dispatch(CategoriesActions.setTree(tree));
+      dispatch(CategoriesActions.setTreeIsFetching(false));
       return {
         isError: false,
         data: tree,
       };
     } catch (e) {
-      const error = e as AjaxError;
-      return {
-        isError: true,
-        code: error.status,
-        data: error.response,
-      };
+      return thunkHandleError(e);
     }
   };
 };
 
 const getCategoryFullAsync = (id: number): AppThunk => {
-  return async (dispatch) => {
+  return async (_) => {
     try {
       const category = await CategoriesAPI.getCategoryFull(id).toPromise();
       return {
@@ -35,12 +30,7 @@ const getCategoryFullAsync = (id: number): AppThunk => {
         data: category,
       };
     } catch (e) {
-      const error = e as AjaxError;
-      return {
-        isError: true,
-        code: error.status,
-        data: error.response,
-      };
+      return thunkHandleError(e);
     }
   };
 };
@@ -49,7 +39,7 @@ const updateCategoryAsync = (
   id: number,
   data: CreateUpdateCategoryRequest
 ): AppThunk => {
-  return async (dispatch) => {
+  return async (_) => {
     try {
       const resultCategory = await CategoriesAPI.updateCategory(
         id,
@@ -57,68 +47,76 @@ const updateCategoryAsync = (
       ).toPromise();
       return { isError: false, data: resultCategory };
     } catch (e) {
-      const error = e as AjaxError;
-      return {
-        isError: true,
-        code: error.status,
-        data: error.response,
-      };
+      return thunkHandleError(e);
     }
   };
 };
 
 const updateCategoryPicAsync = (id: number, file: File): AppThunk => {
-  return async (dispatch) => {
+  return async (_) => {
     try {
       await CategoriesAPI.updateCategoryPic(id, file).toPromise();
       return { isError: false };
     } catch (e) {
-      const error = e as AjaxError;
-      return {
-        isError: true,
-        code: error.status,
-        data: error.response,
-      };
+      return thunkHandleError(e);
     }
   };
 };
 const createCategoryAsync = (data: CreateUpdateCategoryRequest): AppThunk => {
-  return async (dispatch) => {
+  return async (_) => {
     try {
       const category = await CategoriesAPI.createCategory(data).toPromise();
       return { isError: false, data: category };
     } catch (e) {
-      const error = e as AjaxError;
-      return {
-        isError: true,
-        code: error.status,
-        data: error.response,
-      };
+      return thunkHandleError(e);
     }
   };
 };
 
 const deleteCategoryAsync = (id: number): AppThunk => {
-  return async (dispatch) => {
+  return async (_) => {
     try {
       await CategoriesAPI.deleteCategory(id).toPromise();
       return { isError: false };
     } catch (e) {
-      const error = e as AjaxError;
-      return {
-        isError: true,
-        code: error.status,
-        data: error.response,
-      };
+      return thunkHandleError(e);
     }
   };
 };
 
-export const CategoriesAsyncActions = {
+const getLeafs = (): AppThunk => {
+  return async (dispatch) => {
+    try {
+      dispatch(CategoriesActions.setLeafsIsFetching(true));
+      const res = await CategoriesAPI.getLeafs().toPromise();
+      dispatch(CategoriesActions.setLeafs(res));
+      return { isError: false, data: res };
+    } catch (e) {
+      return thunkHandleError(e);
+    } finally {
+      dispatch(CategoriesActions.setLeafsIsFetching(false));
+    }
+  };
+};
+
+const getPath = (id: number): AppThunk => {
+  return async (_) => {
+    try {
+      const res = await CategoriesAPI.getPath(id).toPromise();
+      return { isError: false, data: res };
+    } catch (e) {
+      return thunkHandleError(e);
+    }
+  };
+};
+
+export const CategoriesThunks = {
   getCategoriesTreeAsync,
   getCategoryFullAsync,
   updateCategoryAsync,
   updateCategoryPicAsync,
   createCategoryAsync,
   deleteCategoryAsync,
+  getLeafs,
+  getPath,
 };

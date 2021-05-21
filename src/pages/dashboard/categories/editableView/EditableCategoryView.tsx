@@ -10,7 +10,7 @@ import {
   CreateUpdateCategoryRequest,
 } from "../../../../data/categories/models";
 import { useDispatch } from "react-redux";
-import { CategoriesAsyncActions } from "../../../../data/categories/thunks";
+import { CategoriesThunks } from "../../../../data/categories/thunks";
 import { AppDispatch } from "../../../../data/store";
 import { useParams } from "react-router-dom";
 import classes from "./EditableCategoryView.module.scss";
@@ -59,14 +59,7 @@ export const EditableCategoryView: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const {
-    control,
-    handleSubmit,
-    errors,
-    reset,
-    formState,
-    setError,
-  } = useForm<Input>({
+  const { control, handleSubmit, reset, formState, setError } = useForm<Input>({
     mode: "onChange",
     resolver: yupResolver(schema),
     defaultValues: pureInput,
@@ -77,7 +70,7 @@ export const EditableCategoryView: React.FC = () => {
   }, [pureInput, reset]);
 
   const uploadAndRefreshForm = useCallback(() => {
-    dispatch(CategoriesAsyncActions.getCategoryFullAsync(id)).then((x) => {
+    dispatch(CategoriesThunks.getCategoryFullAsync(id)).then((x) => {
       if (!x.isError) {
         setPureCategory(x.data);
         reset({
@@ -104,14 +97,14 @@ export const EditableCategoryView: React.FC = () => {
       let serverErrors: BadRequestError<Input> = {};
       if (data.pic) {
         const [updateRes, updatePicRes] = await Promise.all([
-          dispatch(CategoriesAsyncActions.updateCategoryAsync(id, requestData)),
-          dispatch(CategoriesAsyncActions.updateCategoryPicAsync(id, data.pic)),
+          dispatch(CategoriesThunks.updateCategoryAsync(id, requestData)),
+          dispatch(CategoriesThunks.updateCategoryPicAsync(id, data.pic)),
         ]);
         serverErrors = combineServerErrors(serverErrors, updateRes);
         serverErrors = combineServerErrors(serverErrors, updatePicRes);
       } else {
         const updateRes = await dispatch(
-          CategoriesAsyncActions.updateCategoryAsync(id, requestData)
+          CategoriesThunks.updateCategoryAsync(id, requestData)
         );
         serverErrors = combineServerErrors(serverErrors, updateRes);
       }
@@ -120,7 +113,7 @@ export const EditableCategoryView: React.FC = () => {
     }
   };
 
-  const { isValid, isDirty, isSubmitting } = formState;
+  const { isValid, isDirty, isSubmitting, errors } = formState;
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}

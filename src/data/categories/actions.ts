@@ -1,21 +1,31 @@
 import { action } from "typesafe-actions";
 import { ActionType } from "typesafe-actions/dist/type-helpers";
-import { CategoryTree } from "./models";
+import { CategoryFull, CategoryTree } from "./models";
 
 export enum CategoriesActionNames {
-  CATEGORIES_SET_IS_FETCHING = "CATEGORIES_SET_IS_FETCHING",
-  CATEGORIES_SET_CATEGORY_TREE = "CATEGORIES_SET_CATEGORY_TREE",
+  CATEGORIES_TREE_IS_FETCHING_SET = "CATEGORIES_TREE_IS_FETCHING_SET",
+  CATEGORIES_TREE_SET = "CATEGORIES_TREE_SET",
+  CATEGORIES_LEAFS_IS_FETCHING_SET = "CATEGORIES_LEAFS_IS_FETCHING_SET",
+  CATEGORIES_LEAFS_SET = "CATEGORIES_LEAFS_SET",
 }
 
-const setIsFetching = (value: boolean) =>
-  action(CategoriesActionNames.CATEGORIES_SET_IS_FETCHING, value);
+const setTreeIsFetching = (value: boolean) =>
+  action(CategoriesActionNames.CATEGORIES_TREE_IS_FETCHING_SET, value);
 
-const setCategoryTree = (tree: CategoryTree) =>
-  action(CategoriesActionNames.CATEGORIES_SET_CATEGORY_TREE, tree);
+const setTree = (tree: CategoryTree) =>
+  action(CategoriesActionNames.CATEGORIES_TREE_SET, tree);
+
+const setLeafsIsFetching = (value: boolean) =>
+  action(CategoriesActionNames.CATEGORIES_LEAFS_IS_FETCHING_SET, value);
+
+const setLeafs = (categories: CategoryFull[]) =>
+  action(CategoriesActionNames.CATEGORIES_LEAFS_SET, categories);
 
 export const CategoriesActions = {
-  setIsFetching,
-  setCategoryTree,
+  setTreeIsFetching,
+  setTree,
+  setLeafsIsFetching,
+  setLeafs,
 };
 
-export type CategoriesActionTypes = ActionType<typeof CategoriesActions>;
+export type CategoriesActionType = ActionType<typeof CategoriesActions>;

@@ -7,6 +7,7 @@ import classes from "./DasboardApp.module.scss";
 import { Route, Switch } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import { Categories } from "./categories/Categories";
+import { Products } from "./products/Products";
 
 export const DashboardApp: React.FC = () => {
   return (
@@ -28,10 +29,7 @@ export const DashboardApp: React.FC = () => {
                     path={"/dashboard/categories"}
                     component={Categories}
                   />
-                  <Route
-                    path={"/dashboard/goods"}
-                    render={() => <h1>Goods</h1>}
-                  />
+                  <Route path={"/dashboard/products"} component={Products} />
                   <Route
                     path={"/dashboard/users"}
                     render={() => <h1>Users</h1>}

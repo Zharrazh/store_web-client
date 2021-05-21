@@ -1,12 +1,27 @@
 .header {
   padding: 12px 0;
   color: white;
-  border-bottom: 3px red solid;
-  background: black;
+  background: rgb(25,35,0);
+  background: linear-gradient(90deg, rgb(37, 49, 0) 6%, rgba(14,19,0,1) 66%, rgba(25,35,0,1) 100%);
+  border-radius: 0 0 10px 10px;
   .inner {
     height: 60px;
-    .content {
-      height: 100%;
+    display: flex;
+    align-items: center;
+
+    & > * + * {
+      margin-left: 60px;
+    }
+
+    .menu{
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      & > * + * {
+        margin-left: 32px;
+      }
     }
   }
   &.outline {

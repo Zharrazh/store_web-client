@@ -1,0 +1,51 @@
+.productPage {
+  margin-top: 24px;
+
+  .content{
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas:
+            "bread bread"
+            "pic other";
+    grid-gap: 16px;
+
+    .breadcrumbs{
+      grid-area: bread;
+    }
+
+    .pic{
+      border-radius: 5px;
+      grid-area: pic;
+      width: 100%;
+    }
+
+    .other{
+      grid-area: other;
+      &> * + * {
+        margin-top: 16px;
+      }
+
+      .name{
+        margin: 0;
+        font-size: 32px;
+        font-weight: 700;
+
+        &:after{
+          margin-top: 16px;
+          display: block;
+          content: "";
+          height: 2px;
+          max-width: 100px;
+          background: black;
+        }
+      }
+
+      .price {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+    }
+  }
+}

@@ -8,8 +8,8 @@ export const DashboardSidebar: React.FC = () => {
       <DashboardSidebarNavLink to={"/dashboard/categories"}>
         Categories
       </DashboardSidebarNavLink>
-      <DashboardSidebarNavLink to={"/dashboard/goods"}>
-        Goods
+      <DashboardSidebarNavLink to={"/dashboard/products"}>
+        Products
       </DashboardSidebarNavLink>
       <DashboardSidebarNavLink to={"/dashboard/users"}>
         Users

@@ -12,12 +12,14 @@ import { FormStateMap, reducer as formReducer } from "redux-form";
 import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { initReducer, InitState } from "./init/reducer";
 import { CategoriesReducer, CategoriesState } from "./categories/reducer";
+import { ProductsReducer, ProductsState } from "./products/reducer";
 
-export type RootState = {
+export type AppStore = {
   init: InitState;
   form: FormStateMap;
   auth: AuthState;
   categories: CategoriesState;
+  products: ProductsState;
 };
 export type AppThunkReturn = Promise<ResponseType>;
 export type ResponseType = {
@@ -26,11 +28,11 @@ export type ResponseType = {
   code?: number;
 };
 
-export type AppDispatch = ThunkDispatch<RootState, null, AnyAction>;
+export type AppDispatch = ThunkDispatch<AppStore, null, AnyAction>;
 
 export type AppThunk<ReturnType = AppThunkReturn> = ThunkAction<
   ReturnType,
-  RootState,
+  AppStore,
   unknown,
   AnyAction
 >;
@@ -43,6 +45,7 @@ export const store = createStore(
     form: formReducer,
     init: initReducer,
     categories: CategoriesReducer,
+    products: ProductsReducer,
   }),
   composeWithDevTools(applyMiddleware(epicMiddleware, thunk))
 );

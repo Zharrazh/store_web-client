@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { CategoriesTree } from "./tree/CategoriesTree";
 import { EditableCategoryView } from "./editableView/EditableCategoryView";
 
@@ -11,6 +11,7 @@ export const Categories: React.FC = () => {
         path={"/dashboard/categories/edit/:id"}
         component={EditableCategoryView}
       />
+      <Route render={() => <Redirect to={"/dashboard/categories"} />} />
     </Switch>
   );
 };

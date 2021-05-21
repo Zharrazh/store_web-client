@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../data/store";
+import { AppStore } from "../../data/store";
 import { AuthState } from "../../data/auth/reducer";
 import { Redirect } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export const Authorize: React.FC<Props> = React.memo(
     successRender = null,
     failedRender = null,
   }): React.ReactElement<any, any> | null => {
-    const authInfo = useSelector<RootState, AuthState>((state) => state.auth);
+    const authInfo = useSelector<AppStore, AuthState>((state) => state.auth);
     let succeededAuthorize =
       authInfo.isAuth &&
       (!admin || (admin && authInfo.me?.roles.includes("admin")));
